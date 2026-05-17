@@ -77,6 +77,43 @@
         .bar-label { width: 180px; text-align: right; font-weight: 700; color: #334155; font-size: 20px; }
         .bar-bg { background: #e2e8f0; flex-grow: 1; height: 35px; border-radius: 5px; overflow: hidden; }
         .bar-fill { height: 100%; background: #4285F4; color: white; display: flex; align-items: center; justify-content: flex-end; padding-right: 15px; font-size: 16px; font-weight: 700; }
+
+        /* ====== 以下是你剛剛加進去的手機螢幕適配代碼 ====== */
+        @media (max-width: 768px) {
+            body { padding: 20px 10px; gap: 30px; }
+            
+            /* 強制取消固定 1280x720，讓手機可以上下滑動 */
+            .slide-container {
+                width: 100%; 
+                height: auto; 
+                min-height: 100vh;
+                padding: 40px 20px;
+                border-radius: 0;
+            }
+
+            /* 文字大小智慧縮放 */
+            h1 { font-size: 36px !important; }
+            .slide-title { font-size: 28px; margin-bottom: 20px; }
+            p, li, td { font-size: 16px; }
+
+            /* 佈局重整：左右變上下 */
+            .two-column { grid-template-columns: 1fr; gap: 30px; }
+            .illustration { min-height: 200px; padding: 15px; }
+            .illustration svg { max-height: 200px; }
+
+            /* 流程圖與矩陣垂直化 */
+            .process-flow { flex-direction: column; gap: 15px; margin-top: 20px; }
+            .process-flow::after { display: none; }
+            .step { width: 100%; }
+            .swot-matrix { display: flex; flex-direction: column; gap: 10px; }
+            .matrix-header.corner { display: none; }
+
+            /* 圖表適配 */
+            .bar-row { flex-direction: column; align-items: flex-start; gap: 5px; }
+            .bar-label { width: 100%; text-align: left; }
+        }
+        /* ====== 以上是加進去的內容 ====== */
+        
     </style>
 </head>
 <body>
