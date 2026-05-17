@@ -78,66 +78,84 @@
         .bar-bg { background: #e2e8f0; flex-grow: 1; height: 35px; border-radius: 5px; overflow: hidden; }
         .bar-fill { height: 100%; background: #4285F4; color: white; display: flex; align-items: center; justify-content: flex-end; padding-right: 15px; font-size: 16px; font-weight: 700; }
 
-        /* ====== 手機螢幕完美適配 (Mobile Responsive) ====== */
-        /* ====== 手機螢幕完美適配 (全面優化版) ====== */
-        @media (max-width: 768px) {
-            body { padding: 10px 5px; gap: 20px; }
-            
-            .slide-container {
-                width: 100%; 
-                height: auto; 
-                min-height: 100vh;
-                /* 關鍵：大幅縮減手機版邊距，給文字更多空間 */
-                padding: 30px 15px; 
-                border-radius: 0;
-                flex-shrink: unset;
-            }
-
-            /* 標題縮小以防佔位過多 */
-            h1 { font-size: 32px !important; }
-            .slide-title { font-size: 24px; margin-bottom: 15px; padding-left: 10px; }
-            h3 { font-size: 20px; }
-            p, li, td { font-size: 15px; line-height: 1.4; text-align: justify; }
-
-            /* 左右二欄改為上下單欄，且縮小插圖高度 */
-            .two-column { grid-template-columns: 1fr; gap: 20px; }
-            .illustration { min-height: 150px; padding: 10px; }
-            .illustration svg { max-height: 150px; }
-
-            /* 流程圖 (Step)：解決直列圖內文字換行過多的問題 */
-            .process-flow { flex-direction: column; gap: 10px; margin-top: 15px; }
-            .process-flow::after { display: none; }
-            .step { 
-                width: 100%; 
-                padding: 12px; 
-                display: flex; 
-                align-items: center; 
-                text-align: left; /* 改為靠左對齊，節省垂直空間 */
-                gap: 15px;
+        /* ====== 手機螢幕完美適配 (強制修正左偏與滾動版) ====== */
+        @media (max-width: 768px) {
+            body { 
+                display: block; /* 關鍵：取消 flex 佈局，防止內容左偏切斷 */
+                padding: 15px 10px; 
+                background-color: #0f172a;
+                overflow-x: hidden; /* 防止橫向抖動 */
             }
-            .step i { margin-bottom: 0; font-size: 24px; flex-shrink: 0; }
-            .step h4 { margin: 0; font-size: 18px; flex-shrink: 0; width: 80px; }
-            .step p { margin: 0; font-size: 14px; }
-
-            /* SWOT 矩陣：強制變為垂直條狀卡片 */
-            .swot-matrix { 
-                display: flex; 
-                flex-direction: column; 
-                gap: 10px; 
+            
+            .slide-container {
+                width: 100% !important; /* 強制覆蓋原本的 1280px */
+                height: auto !important; /* 強制覆蓋原本的 720px */
+                min-height: auto;
+                padding: 30px 15px !important; /* 縮減邊距，給文字空間 */
+                margin-bottom: 20px;
+                border-radius: 8px;
+                overflow: visible; /* 允許內容撐開高度 */
+                flex-shrink: 1;
             }
-            .matrix-header { padding: 8px; font-size: 16px; }
-            .matrix-header.corner { display: none; }
-            .matrix-box { padding: 15px; }
 
-            /* 表格適配：允許左右滑動，防止字體擠壓 */
-            .content-area { overflow-x: auto; display: block; }
-            table { min-width: 500px; }
-            th, td { padding: 10px 5px; font-size: 13px; }
+            /* 文字縮放優化 */
+            h1 { font-size: 32px !important; line-height: 1.2 !important; }
+            .slide-title { font-size: 24px !important; margin-bottom: 15px !important; padding-left: 10px !important; }
+            h3 { font-size: 20px !important; margin-bottom: 10px !important; }
+            p, li, td { font-size: 16px !important; line-height: 1.5 !important; }
 
-            /* 圖表進度條適配 */
-            .bar-row { flex-direction: column; align-items: flex-start; gap: 5px; }
-            .bar-label { width: 100%; text-align: left; font-size: 14px; }
-        }
+            /* 左右欄位改為上下堆疊 */
+            .two-column { 
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 20px !important; 
+            }
+            
+            .illustration { 
+                width: 100% !important;
+                min-height: 150px !important; 
+                padding: 10px !important; 
+            }
+            .illustration svg { max-height: 180px !important; }
+
+            /* 修正流程圖 (Step)：改為垂直緊湊排列 */
+            .process-flow { 
+                flex-direction: column !important; 
+                gap: 12px !important; 
+                margin-top: 10px !important; 
+            }
+            .process-flow::after { display: none !important; } /* 刪除橫線 */
+            .step { 
+                width: 100% !important; 
+                padding: 12px !important; 
+                text-align: left !important;
+            }
+            .step h4 { font-size: 18px !important; margin: 5px 0 !important; }
+            .step p { font-size: 14px !important; }
+
+            /* 修正 SWOT 矩陣：改為垂直長條卡片 */
+            .swot-matrix { 
+                display: flex !important; 
+                flex-direction: column !important; 
+                gap: 10px !important; 
+                grid-template-columns: none !important;
+            }
+            .matrix-header { 
+                width: 100% !important; 
+                padding: 10px !important; 
+                height: auto !important;
+            }
+            .matrix-header.corner { display: none !important; }
+            .matrix-box { width: 100% !important; }
+
+            /* 圖表與表格適配 */
+            .bar-row { flex-direction: column !important; align-items: flex-start !important; gap: 5px !important; }
+            .bar-label { width: 100% !important; text-align: left !important; }
+            
+            /* 磁磚樣式適配 */
+            .tiled { flex-direction: column !important; }
+            .tile { width: 100% !important; margin-bottom: 10px !important; }
+        }
         
     </style>
 </head>
