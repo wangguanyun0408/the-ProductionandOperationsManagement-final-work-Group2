@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* 核心樣式：1280x720 固定維度 */
+        /* 1. 核心設計：1280x720 固定維度 */
         * { box-sizing: border-box; }
         body { background-color: #0f172a; margin: 0; padding: 50px 0; display: flex; flex-direction: column; align-items: center; gap: 60px; }
         
@@ -29,11 +29,11 @@
             z-index: 10;
         }
 
-        /* 字體與標題級別 */
+        /* 標題與級別 */
         .slide-title { font-size: 38px; color: #4285F4; border-left: 10px solid #4285F4; padding-left: 20px; margin-bottom: 30px; font-weight: 700; }
-        h1 { font-size: 68px; color: #1e293b; margin: 0; line-height: 1.2; }
+        h1 { font-size: 64px; color: #1e293b; margin: 0; line-height: 1.2; }
         h3 { font-size: 28px; color: #334155; margin-bottom: 12px; }
-        p, li, td { font-size: 20px; line-height: 1.6; color: #475569; }
+        p, li, td { font-size: 19px; line-height: 1.5; color: #475569; margin: 0; margin-bottom: 15px; }
 
         /* 佈局組件 */
         .content-area { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; width: 100%; }
@@ -41,32 +41,49 @@
         .illustration { background: #f8fafc; border-radius: 20px; padding: 30px; display: flex; justify-content: center; align-items: center; height: 100%; min-height: 350px; }
         .illustration svg { width: 100%; height: auto; max-height: 350px; }
 
-        /* 磁磚樣式 */
+        /* 元件樣式 */
         .tiled { display: flex; gap: 20px; width: 100%; }
         .tile { flex: 1; background: #f8fafc; border-radius: 15px; padding: 25px; text-align: center; border-bottom: 6px solid #4285F4; display: flex; flex-direction: column; align-items: center; }
         .tile i { font-size: 40px; color: #4285F4; margin-bottom: 15px; }
 
-        /* 流程圖樣式 */
         .process-flow { display: flex; justify-content: space-between; position: relative; margin-top: 50px; }
         .process-flow::after { content: ''; position: absolute; top: 50%; left: 5%; width: 90%; height: 4px; background: #e2e8f0; z-index: 0; }
         .step { background: white; border: 3px solid #4285F4; border-radius: 15px; padding: 15px; width: 22%; z-index: 1; text-align: center; }
-        .step i { font-size: 30px; color: #4285F4; margin-bottom: 10px; }
+        .step h4 { color: #1e293b; margin: 10px 0; font-size: 20px; }
+        .step p { font-size: 16px; line-height: 1.4; margin-bottom: 0; }
+
+        /* 第 18 頁 SWOT 交叉矩陣專用樣式 */
+        .swot-matrix {
+            display: grid;
+            grid-template-columns: 180px 1fr 1fr;
+            grid-template-rows: 140px 1fr 1fr;
+            gap: 15px;
+            width: 100%;
+            height: 100%;
+        }
+        .matrix-header { background: #f1f5f9; display: flex; align-items: center; justify-content: center; text-align: center; border-radius: 10px; font-weight: 700; color: #1e293b; font-size: 20px; padding: 15px; }
+        .matrix-box { background: #f8fafc; border-radius: 10px; padding: 20px; border-left: 5px solid #4285F4; position: relative; }
+        .matrix-box h4 { margin: 0 0 10px 0; color: #4285F4; font-size: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px; }
+        .matrix-box p { font-size: 16px; line-height: 1.4; margin-bottom: 8px; color: #334155; }
+        .matrix-box ul { padding-left: 20px; margin: 0; }
+        .matrix-box li { font-size: 15px; margin-bottom: 5px; color: #475569; }
+        .corner { background: transparent; border: none; font-size: 14px; font-weight: 400; color: #64748b; }
 
         /* 表格與圖表 */
         table { width: 100%; border-collapse: collapse; }
         th { background: #4285F4; color: white; padding: 15px; text-align: left; font-size: 22px; }
         td { padding: 15px; border-bottom: 1px solid #e2e8f0; font-size: 20px; }
         .bar-row { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .bar-label { width: 180px; text-align: right; font-weight: 700; }
-        .bar-bg { background: #e2e8f0; flex-grow: 1; height: 30px; border-radius: 5px; overflow: hidden; }
-        .bar-fill { height: 100%; background: #4285F4; color: white; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; font-size: 14px; }
+        .bar-label { width: 180px; text-align: right; font-weight: 700; color: #334155; font-size: 20px; }
+        .bar-bg { background: #e2e8f0; flex-grow: 1; height: 35px; border-radius: 5px; overflow: hidden; }
+        .bar-fill { height: 100%; background: #4285F4; color: white; display: flex; align-items: center; justify-content: flex-end; padding-right: 15px; font-size: 16px; font-weight: 700; }
     </style>
 </head>
 <body>
 
 <div class="slide-container">
     <div class="content-area" style="text-align: center;">
-        <h1>Google ESG永續發展與<br>生產作業管理</h1>
+        <h1 style="font-size: 72px;">Google ESG永續發展與<br>生產作業管理</h1>
         <p style="margin-top: 100px; font-weight: 700; color: #4285F4; font-size: 32px;">報告組別：第二組 汪冠昀 吳承叡 黃柏竣</p>
         <div style="margin-top: 60px;">
             <svg width="240" height="60" viewBox="0 0 240 60">
@@ -80,37 +97,63 @@
 </div>
 
 <div class="slide-container">
-    <h2 class="slide-title">研究動機一：數位時代的全球基礎設施</h2>
+    <h2 class="slide-title">報告核心架構與分析路徑</h2>
+    <div class="content-area">
+        <div class="tiled">
+            <div class="tile">
+                <i class="fa-solid fa-fire"></i>
+                <h3>企業靈魂</h3>
+                <p>歷史、信念與全球角色演變。</p>
+            </div>
+            <div class="tile" style="border-bottom-color: #34A853;">
+                <i class="fa-solid fa-gears" style="color: #34A853;"></i>
+                <h3>生產作業管理</h3>
+                <p>數據生命週期、工藝與品質工程。</p>
+            </div>
+            <div class="tile" style="border-bottom-color: #EA4335;">
+                <i class="fa-solid fa-earth-asia" style="color: #EA4335;"></i>
+                <h3>ESG 永續戰略</h3>
+                <p>自然敬畏、社會賦能與 AI 道德。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container">
+    <h2 class="slide-title">研究動機一：數位時代的生存本能</h2>
     <div class="content-area">
         <div class="two-column">
             <div class="illustration">
                 <svg viewBox="0 0 400 300">
-                    <rect x="50" y="50" width="300" height="200" rx="10" fill="none" stroke="#4285F4" stroke-width="2" />
+                    <rect x="50" y="50" width="300" height="200" rx="10" fill="#f8fafc" stroke="#4285F4" stroke-width="2" />
                     <circle cx="200" cy="150" r="40" fill="none" stroke="#EA4335" stroke-width="2" />
                     <circle cx="100" cy="100" r="10" fill="#4285F4" /><circle cx="300" cy="200" r="10" fill="#34A853" />
                     <path d="M100,100 L300,200" stroke="#cbd5e1" stroke-width="1" />
                 </svg>
             </div>
             <div>
-                <h3>為什麼研究 Google？</h3>
-                <p>Google 規模大到影響全球 30 億裝置，其作業流程穩定性直接關乎全球數位社會的運作。我們想探討其極致效率如何肩負起社會永續責任。</p>
+                <h3>恐懼黑暗，尋找火光</h3>
+                <p>遠古部落最重要的是「水源」與「營火」，對現代人而言，Google 就是數位世界的「水源」。</p>
+                <p>人類天生恐懼資訊斷絕。我們研究 Google，是因為它接管了人類最原始的生存本能：**尋找答案的好奇心**。當系統影響 30 億人時，其生產管理直接關乎數位文明的穩定性。</p>
             </div>
         </div>
     </div>
 </div>
 
 <div class="slide-container">
-    <h2 class="slide-title">研究動機二：效率與永續的正向循環</h2>
+    <h2 class="slide-title">研究動機二：效率與永續的「獵人智慧」</h2>
     <div class="content-area">
         <div class="two-column">
             <div>
-                <h3>解決 AI 時代的能源焦慮</h3>
-                <p>我們挑戰「高效能」與「環保」衝突的舊觀念。研究 Google 如何透過 POM 創新將 ESG 轉化為提升效率的競爭優勢。</p>
+                <h3>不燒掉森林的生存法則</h3>
+                <p>聰明的獵人不會為了抓一隻兔子而燒掉整座森林。AI 算力需要無窮能量，若為技術而毀掉棲息地，這叫自我毀滅。</p>
+                <p>本研究想拆解 Google 如何透過生產管理 (POM) 創新，在開發「最強工具」的同時，不燒掉家園，成功將 ESG 轉化為效率優勢。</p>
             </div>
             <div class="illustration">
                 <svg viewBox="0 0 400 300">
                     <path d="M100,250 L300,250 M200,250 L200,50" stroke="#1e293b" stroke-width="4" />
                     <rect x="120" y="150" width="40" height="100" fill="#EA4335" /><rect x="240" y="80" width="40" height="170" fill="#34A853" />
+                    <path d="M140,150 Q200,100 260,80" fill="none" stroke="#4285F4" stroke-width="4" stroke-dasharray="5,5" />
                 </svg>
             </div>
         </div>
@@ -118,37 +161,38 @@
 </div>
 
 <div class="slide-container">
-    <h2 class="slide-title">核心價值：從車庫創業到全球公民</h2>
+    <h2 class="slide-title">核心價值：從營火到神火</h2>
     <div class="content-area">
         <div class="two-column">
             <div class="illustration">
                 <svg viewBox="0 0 400 300">
                     <rect x="50" y="100" width="300" height="150" fill="#f8fafc" stroke="#1e293b" stroke-width="2" />
                     <path d="M50,100 L200,30 L350,100" fill="none" stroke="#EA4335" stroke-width="4" />
-                    <text x="200" y="180" text-anchor="middle" font-weight="700" fill="#4285F4">GARAGE SPIRIT</text>
                 </svg>
             </div>
             <div>
                 <h3>Do the Right Thing</h3>
-                <p>1998 年創立於車庫，使命感從單純技術開發，演進為對地球環境與人類社會的全面責任承擔。</p>
+                <p>車庫象徵最原始的創造力。偉大的文明都始於火堆旁的夢想。</p>
+                <p>從 "Don't be evil" 到 "Do the right thing"，這是一場「部落首領」如何保持初心的演進。握有資訊神火後，Google 選擇用它點亮文明，而非焚燒異己。</p>
             </div>
         </div>
     </div>
 </div>
 
 <div class="slide-container">
-    <h2 class="slide-title">環境 (E)：2030 氣候登月計畫</h2>
+    <h2 class="slide-title">環境 (E)：對太陽與季風的古老崇拜</h2>
     <div class="content-area">
         <div class="two-column">
             <div>
                 <h3>全天候無碳能源 (CFE)</h3>
-                <p>Google 承諾 2030 年前於全球營運網實現每小時無碳電力。這已成為其資料中心的核心生產標準。</p>
+                <p>這是一場回歸原始能源觀的革命。Google 試圖重拾人類對太陽與季風的古老依賴。</p>
+                <p>Google 承諾 2030 年全面使用無碳電力。這不僅是電力工程，更是人類重新學習如何與自然律動同步的過程，展現了技術開發者對自然的敬畏。</p>
             </div>
             <div class="illustration">
                 <svg viewBox="0 0 400 300">
                     <circle cx="200" cy="150" r="100" fill="#f0fdf4" stroke="#34A853" stroke-width="2" stroke-dasharray="5,5" />
                     <path d="M200,100 L200,200 M150,150 L250,150" stroke="#34A853" stroke-width="4" />
-                    <text x="200" y="260" text-anchor="middle" font-weight="700" fill="#1b5e20">24/7 CLEAN ENERGY</text>
+                    <circle cx="200" cy="150" r="20" fill="#FBBC05" />
                 </svg>
             </div>
         </div>
@@ -156,35 +200,37 @@
 </div>
 
 <div class="slide-container">
-    <h2 class="slide-title">社會責任 (S)：數位賦能與平權</h2>
+    <h2 class="slide-title">社會責任 (S)：不拋下任何一位成員</h2>
     <div class="content-area">
         <div class="two-column">
             <div class="illustration">
                 <svg viewBox="0 0 400 300">
                     <circle cx="200" cy="150" r="80" fill="none" stroke="#4285F4" stroke-width="2" />
-                    <circle cx="150" cy="100" r="12" fill="#EA4335" /><circle cx="250" cy="180" r="12" fill="#34A853" />
+                    <circle cx="150" cy="100" r="16" fill="#EA4335" /><circle cx="250" cy="180" r="16" fill="#34A853" />
                     <path d="M120,150 L280,150" stroke="#4285F4" stroke-width="1" />
                 </svg>
             </div>
             <div>
                 <h3>縮減數位落差</h3>
-                <p>Grow with Google 協助超過一千萬人學習數位技能；AI 洪水預報系統保護全球 4.6 億人口安全。</p>
+                <p>部落的強大取決於最弱小的成員是否被照顧。Grow with Google 將技能傳遞給千萬人；AI 洪水預報系統保護了 4.6 億人。</p>
+                <p>在數位部落中，一個人的獲救，就是整個文明的進步。將「預知未來」的能力賦予每個人，這就是社會共榮。</p>
             </div>
         </div>
     </div>
 </div>
 
 <div class="slide-container">
-    <h2 class="slide-title">治理 (G)：道德 AI 與數據透明度</h2>
+    <h2 class="slide-title">治理 (G)：恐懼未知與智慧禁忌</h2>
     <div class="content-area">
         <div class="two-column">
-            <div style="background-color: #f8fafc; padding: 30px; border-radius: 15px; border-top: 6px solid #4285F4;">
-                <h3>負責任的 AI 指導原則</h3>
-                <p>應具社會效益、避免偏見、安全性與透明度。所有專案（如 Gemini）需經嚴格倫理審核。</p>
+            <div style="background-color: #f8fafc; padding: 35px; border-radius: 15px; border-top: 6px solid #4285F4; height: 100%;">
+                <h3>負責任的 AI</h3>
+                <p>設立道德委員會，就像部落建立「禁忌 (Taboo)」。我們不去觸碰會帶來偏見與歧視的禁區。</p>
+                <p>負責任的治理，是我們對未知的恐懼所轉化成的智慧控制。</p>
             </div>
-            <div style="background-color: #f8fafc; padding: 30px; border-radius: 15px; border-top: 6px solid #34A853;">
-                <h3>透明治理架構</h3>
-                <p>每年發布透明度報告，揭露政府要求數據情形。推動隱私沙盒技術減少數據追蹤。</p>
+            <div style="background-color: #f8fafc; padding: 35px; border-radius: 15px; border-top: 6px solid #34A853; height: 100%;">
+                <h3>透明度治理</h3>
+                <p>每年發布透明度報告。在技術狂奔的年代，良好的治理就是為失控的巨獸繫上最堅固的安全繩。</p>
             </div>
         </div>
     </div>
@@ -196,11 +242,11 @@
         <div class="table-layout">
             <table>
                 <thead>
-                    <tr><th>類別</th><th>績效指標</th><th>年度表現</th><th>狀態</th></tr>
+                    <tr><th>指標面向</th><th>核心績效指標 (KPI)</th><th>年度最新表現</th><th>戰略狀態</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td>環境 (E)</td><td>再生能源匹配率</td><td>100% (連續八年達成)</td><td>✅ 已達標</td></tr>
-                    <tr><td>環境 (E)</td><td>全天候無碳電力匹配率</td><td>全球平均 66%</td><td>📈 穩定成長</td></tr>
+                    <tr><td>環境 (E)</td><td>再生能源採購匹配率</td><td>100% (連續八年達成)</td><td>✅ 里程碑</td></tr>
+                    <tr><td>環境 (E)</td><td>全天候無碳電力 (CFE)</td><td>全球平均 66%</td><td>📈 穩定成長</td></tr>
                     <tr><td>社會 (S)</td><td>數位技能培訓累積</td><td>突破 1,000 萬人</td><td>✅ 已達標</td></tr>
                     <tr><td>治理 (G)</td><td>供應商責任審核比例</td><td>100% 第一級供應商</td><td>✅ 全面覆蓋</td></tr>
                 </tbody>
@@ -210,43 +256,47 @@
 </div>
 
 <div class="slide-container">
-    <h2 class="slide-title">生產作業流程：數據服務生命週期</h2>
+    <h2 class="slide-title">生產作業流程：從採集到精煉真相</h2>
     <div class="content-area">
-        <div style="text-align: center; margin-bottom: 20px;">
-            <svg width="600" height="80" viewBox="0 0 600 80">
-                <rect x="0" y="10" width="120" height="50" rx="10" fill="#4285F4" /><path d="M120,35 L160,35" stroke="#cbd5e1" stroke-width="4" />
-                <rect x="160" y="10" width="120" height="50" rx="10" fill="#EA4335" /><path d="M280,35 L320,35" stroke="#cbd5e1" stroke-width="4" />
-                <rect x="320" y="10" width="120" height="50" rx="10" fill="#FBBC05" /><path d="M440,35 L480,35" stroke="#cbd5e1" stroke-width="4" />
-                <rect x="480" y="10" width="120" height="50" rx="10" fill="#34A853" />
-                <text x="60" y="40" text-anchor="middle" fill="white" font-size="12">數據採集</text><text x="220" y="40" text-anchor="middle" fill="white" font-size="12">運算索引</text><text x="380" y="40" text-anchor="middle" fill="white" font-size="12">服務交付</text><text x="540" y="40" text-anchor="middle" fill="white" font-size="12">反饋優化</text>
-            </svg>
-        </div>
         <div class="process-flow">
-            <div class="process-step"><h4>投入 (Inputs)</h4><p>網路爬蟲、數據採集、算力投入。</p></div>
-            <div class="process-step"><h4>轉換 (Process)</h4><p>模型推理與自動索引分發。</p></div>
-            <div class="process-step"><h4>產出 (Outputs)</h4><p>搜尋結果、AI 生成、廣告。</p></div>
-            <div class="process-step"><h4>反饋 (Feedback)</h4><p>用戶行為分析與模型修正。</p></div>
+            <div class="step">
+                <i class="fa-solid fa-seedling"></i>
+                <h4>投入 (Inputs)</h4>
+                <p>如同採集漿果，從全球網羅海量數據與部署硬體算力。</p>
+            </div>
+            <div class="step">
+                <i class="fa-solid fa-fire-burner"></i>
+                <h4>轉換 (Process)</h4>
+                <p>在數據荒野中辨識毒物、精煉真相的演算法過濾。 </p>
+            </div>
+            <div class="step">
+                <i class="fa-solid fa-hand-holding-hand"></i>
+                <h4>產出 (Outputs)</h4>
+                <p>遞交搜尋結果，每一次點擊都是文明經驗的傳承。</p>
+            </div>
+            <div class="step">
+                <i class="fa-solid fa-ear-listen"></i>
+                <h4>反饋 (Feedback)</h4>
+                <p>傾聽全球部落的迴響，即時優化演算法生存邏輯。</p>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="slide-container">
-    <h2 class="slide-title">作業管理：硬體供應鏈垂直整合</h2>
+    <h2 class="slide-title">作業管理：對物質的極致尊重</h2>
     <div class="content-area">
         <div class="two-column">
             <div>
-                <h3>責任生產與供應鏈優化</h3>
-                <ul style="padding-left: 20px;">
-                    <li><strong>材料循環：</strong> Pixel 9 外殼使用 100% 回收鋁。</li>
-                    <li><strong>組件重用：</strong> 重用了超過 880 萬件伺服器組件。</li>
-                    <li><strong>供應商責任：</strong> 100% 審核通過 ESG 行為準則。</li>
-                </ul>
+                <h3>硬體供應鏈垂直整合</h3>
+                <p>製作工具的人必須對材料負責。當我們拿起 Pixel 9，手感來自 100% 回收鋁。</p>
+                <p>我們不再揮霍大地，而是重複利用 880 萬件伺服器組件。這是一種對自然的敬畏，也是最高層級的成本控制管理。</p>
             </div>
             <div class="illustration">
                 <svg viewBox="0 0 400 300">
                     <rect x="100" y="180" width="200" height="30" fill="#1e293b" />
-                    <circle cx="200" cy="80" r="20" fill="#FBBC05" />
-                    <path d="M120,150 L160,150 M240,150 L280,150" stroke="#4285F4" stroke-width="4" />
+                    <circle cx="200" cy="100" r="30" fill="#34A853" />
+                    <path d="M120,150 L160,150 M240,150 L280,150" stroke="#4285F4" stroke-width="4" stroke-dasharray="5,5" />
                 </svg>
             </div>
         </div>
@@ -254,67 +304,72 @@
 </div>
 
 <div class="slide-container">
-    <h2 class="slide-title">品質管理：網站可靠性工程 (SRE)</h2>
+    <h2 class="slide-title">品質管理 (SRE)：黑夜中守望的哨兵</h2>
     <div class="content-area">
         <div class="two-column">
             <div class="illustration">
                 <svg viewBox="0 0 400 300">
                     <rect x="50" y="50" width="300" height="200" rx="10" fill="#1e293b" />
-                    <path d="M70,200 L150,100 L250,150 L320,50" fill="none" stroke="#34A853" stroke-width="3" />
+                    <path d="M70,150 L120,100 L170,180 L220,90 L270,120 L320,60" fill="none" stroke="#FBBC05" stroke-width="4" />
                 </svg>
             </div>
             <div>
-                <h3>運維即軟體工程</h3>
-                <p>Google 品質保證核心：設定 SLO 穩定度指標、容許故障以換取創新的「錯誤預算」機制。</p>
+                <h3>容錯的生存哲學</h3>
+                <p>SRE 工程師是守望者。他們不追求「絕對安穩」，因為他們知道崩潰隨時會來。</p>
+                <p>透過「錯誤預算 (Error Budget)」，他們學會在危險邊緣生存與試錯。這是一種將維運視為軟體工程的偉大生存哲學。</p>
             </div>
         </div>
     </div>
 </div>
 
 <div class="slide-container">
-    <h2 class="slide-title">生產資源：全球海纜與資料中心</h2>
+    <h2 class="slide-title">生產資源：現代文明的血管與心臟</h2>
     <div class="content-area">
-        <div style="text-align: center; margin-bottom: 20px;">
-            <svg width="800" height="200" viewBox="0 0 800 200">
-                <path d="M100,100 Q400,20 700,100 T400,180 Z" fill="#f8fafc" stroke="#4285F4" stroke-width="2" />
-                <circle cx="200" cy="80" r="8" fill="#EA4335" /><circle cx="500" cy="130" r="8" fill="#34A853" />
+        <div style="text-align: center; margin-bottom: 30px;">
+            <svg width="800" height="150" viewBox="0 0 800 150">
+                <path d="M100,100 Q400,0 700,100 T400,200" fill="none" stroke="#4285F4" stroke-width="3" stroke-dasharray="10,5" />
+                <circle cx="200" cy="80" r="10" fill="#EA4335" /><circle cx="500" cy="110" r="10" fill="#34A853" />
             </svg>
         </div>
         <div class="tiled">
             <div class="tile"><h3>20+ 雲端區域</h3><p>全球戰略佈局。</p></div>
-            <div class="tile"><h3>自有海纜</h3><p>掌控數據動脈。</p></div>
-            <div class="tile"><h3>邊緣運算</h3><p>極大化作業效率。</p></div>
+            <div class="tile" style="border-bottom-color: #EA4335;"><h3>自有海底電纜</h3><p>掌控數據動脈。</p></div>
+            <div class="tile" style="border-bottom-color: #34A853;"><h3>邊緣運算節點</h3><p>極大化產出效率。</p></div>
         </div>
     </div>
 </div>
 
 <div class="slide-container">
-    <h2 class="slide-title">技術生產力：自研 TPU 晶片效能</h2>
+    <h2 class="slide-title">技術生產力：克服極限的工具本能</h2>
     <div class="content-area">
-        <div class="bar-row">
-            <div class="bar-label">AI 訓練效能</div>
-            <div class="bar-bg"><div class="bar-fill" style="width: 90%;">2.8x 倍速</div></div>
+        <div style="display: flex; flex-direction: column; gap: 30px; margin-bottom: 40px;">
+            <div class="bar-row">
+                <div class="bar-label">AI 訓練效能</div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 90%;">2.8x 倍速運算</div></div>
+            </div>
+            <div class="bar-row">
+                <div class="bar-label">能源效率提升</div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 95%; background: #34A853;">3.0x 倍極致省電</div></div>
+            </div>
         </div>
-        <div class="bar-row">
-            <div class="bar-label">能源效率</div>
-            <div class="bar-bg"><div class="bar-fill" style="width: 95%; background: #34A853;">3.0x 節能</div></div>
-        </div>
-        <p style="margin-top: 30px; text-align: center;">客製化晶片 (TPU) 大幅降低 AI 生產之邊際成本。</p>
+        <p style="text-align: center;">TPU 是我們打造的最鋒利石斧。用智慧克服體力限制，展現人類優化邊際成本的極致本能。</p>
     </div>
 </div>
 
 <div class="slide-container">
-    <h2 class="slide-title">綠色 AI：作業管理與永續之協同</h2>
+    <h2 class="slide-title">綠色 AI：萬物有靈的共生儀式</h2>
     <div class="content-area">
         <div class="two-column">
             <div>
-                <h3>AI 驅動節能</h3>
-                <p>使用 DeepMind AI 即時控制冷卻系統。成果：降低資料中心冷卻能耗約 40%。</p>
+                <h3>代碼學會了謙遜</h3>
+                <p>當演算法開始照顧空調，它就像森林中的植物學會共享陽光。DeepMind AI 即時控制資料中心，成功降低 40% 冷卻能耗。</p>
+                <p>我們讓 AI 學會了節制，這完美詮釋了生產作業如何與自然環境和諧共生。</p>
             </div>
             <div class="illustration">
                 <svg viewBox="0 0 400 300">
-                    <rect x="150" y="100" width="100" height="100" rx="12" fill="#4285F4" opacity="0.8" />
-                    <circle cx="200" cy="150" r="30" fill="#FBBC05" />
+                    <rect x="150" y="100" width="100" height="100" rx="15" fill="#4285F4" opacity="0.9" />
+                    <path d="M150,150 Q100,80 150,30 T150,150" fill="#34A853" opacity="0.8" />
+                    <circle cx="200" cy="150" r="20" fill="white" />
                 </svg>
             </div>
         </div>
@@ -322,29 +377,30 @@
 </div>
 
 <div class="slide-container">
-    <h2 class="slide-title">循環經濟：資源反向供應鏈管理</h2>
+    <h2 class="slide-title">循環經濟：塵歸塵，土歸土的生產美學</h2>
     <div class="content-area">
         <div class="tiled">
-            <div class="tile"><h3>組件重用</h3><p>重用 880 萬件伺服器組件。</p></div>
-            <div class="tile"><h3>廢棄物分流</h3><p>轉化率達 84%。</p></div>
-            <div class="tile"><h3>閉環採購</h3><p>使用 100% 回收鋁。</p></div>
+            <div class="tile" style="border-top: 6px solid #34A853;"><h3>自然的完美循環</h3><p>重用 880 萬件組件。</p></div>
+            <div class="tile" style="border-top: 6px solid #FBBC05;"><h3>廢棄物轉化重生</h3><p>84% 轉化率。</p></div>
+            <div class="tile" style="border-top: 6px solid #4285F4;"><h3>生產的終極藝術</h3><p>100% 回收鋁機身。</p></div>
         </div>
     </div>
 </div>
 
 <div class="slide-container">
-    <h2 class="slide-title">組織架構：Alphabet 的策略價值</h2>
+    <h2 class="slide-title">組織架構：多角化與生存風險管理</h2>
     <div class="content-area">
         <div class="two-column">
             <div>
-                <h3>多角化與風險管理</h3>
-                <p>將成熟 Google 業務與高風險 Other Bets 分開，實現資源精準配置與創新風險隔離。</p>
+                <h3>不把糧食藏在同一個山洞</h3>
+                <p>聰明的部落懂得分散風險。重組為 Alphabet 是為了切割主營業務與未來投資。</p>
+                <p>實現資源精準配置，讓創新者有獨立實驗場，確保了主引擎的絕對穩定。</p>
             </div>
             <div class="illustration">
                 <svg viewBox="0 0 400 300">
-                    <rect x="150" y="50" width="100" height="50" fill="#1e293b" />
-                    <path d="M200,100 L100,150 M200,100 L300,150" stroke="#cbd5e1" stroke-width="2" />
-                    <rect x="50" y="150" width="100" height="50" fill="#4285F4" />
+                    <rect x="130" y="50" width="140" height="60" rx="10" fill="#1e293b" />
+                    <circle cx="100" cy="200" r="40" fill="#4285F4" /><circle cx="300" cy="200" r="40" fill="#EA4335" />
+                    <path d="M200,110 L100,180 M200,110 L300,180" stroke="#cbd5e1" stroke-width="3" />
                 </svg>
             </div>
         </div>
@@ -352,43 +408,62 @@
 </div>
 
 <div class="slide-container">
-    <h2 class="slide-title">市場統治力：數據驅動之規模優勢</h2>
+    <h2 class="slide-title">經營總結：TOWS 策略交叉矩陣</h2>
     <div class="content-area">
-        <div class="tiled">
-            <div class="tile"><h3>91%</h3><p>搜尋市佔</p></div>
-            <div class="tile"><h3>30 億</h3><p>裝置總數</p></div>
-            <div class="tile"><h3>10 億小時</h3><p>YouTube 觀看</p></div>
+        <div class="swot-matrix">
+            <div class="matrix-header corner">內部因素 \ 外部因素</div>
+            <div class="matrix-header" style="border-bottom: 4px solid #34A853;">機會 (Opportunities)</div>
+            <div class="matrix-header" style="border-bottom: 4px solid #EA4335;">威脅 (Threats)</div>
+            
+            <div class="matrix-header" style="border-right: 4px solid #4285F4;">優勢<br>(Strengths)</div>
+            <div class="matrix-box">
+                <h4>SO 策略 (增長)</h4>
+                <ul>
+                    <li>利用 TPU 算力優勢，領先佈局企業級綠色 AI 服務。</li>
+                    <li>憑藉海纜基礎設施，擴大雲端服務在全球低開發地區的市佔。</li>
+                </ul>
+            </div>
+            <div class="matrix-box">
+                <h4>ST 策略 (防禦)</h4>
+                <ul>
+                    <li>利用 SRE 運維的高穩定性，抵禦競爭對手在可靠性上的挑戰。</li>
+                    <li>發揮品牌信任感，降低隱私監管帶來的用戶流失。</li>
+                </ul>
+            </div>
+            
+            <div class="matrix-header" style="border-right: 4px solid #FBBC05;">劣勢<br>(Weaknesses)</div>
+            <div class="matrix-box">
+                <h4>WO 策略 (轉型)</h4>
+                <ul>
+                    <li>透過雲端與 AI 服務多元化，降低對廣告營收的過度依賴。</li>
+                    <li>精簡官僚體系，抓住生成式 AI 的快速轉型契機。</li>
+                </ul>
+            </div>
+            <div class="matrix-box">
+                <h4>WT 策略 (生存)</h4>
+                <ul>
+                    <li>在反壟斷監管下，強化治理透明度，避免巨額罰款影響研發。</li>
+                    <li>優化 AI 訓練用水與電力，緩解日益嚴峻的資源壓力。</li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="slide-container">
-    <h2 class="slide-title">經營總結：SWOT 分析矩陣</h2>
-    <div class="content-area">
-        <div class="table-layout">
-            <table>
-                <thead><tr><th>分析面向</th><th>優勢 / 機會</th><th>劣勢 / 威脅</th></tr></thead>
-                <tbody>
-                    <tr><td>作業管理</td><td>TPU 算力、SRE 維運。</td><td>AI 生產成本急升。</td></tr>
-                    <tr><td>ESG 永續</td><td>潔淨能源、品牌效應。</td><td>高耗水挑戰。</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<div class="slide-container">
-    <h2 class="slide-title">結論一：ESG 與 POM 的深度共生</h2>
+    <h2 class="slide-title">結論一：效率與良知並不衝突</h2>
     <div class="content-area">
         <div class="two-column">
             <div>
-                <h3>效率即永續的價值體系</h3>
-                <p>Google 的 ESG 並非單純支出，而是透過作業管理優化轉化為效率提升與成本優勢。</p>
+                <h3>ESG 與 POM 的深度共生</h3>
+                <p>互惠利他是部落生存的唯一法則。Google 的 ESG 並非慈善，而是最高級別的效率優化。</p>
+                <p>Google 證明了「善良與道德」不僅是口號，更是一種具備極高生產力的商業模式。</p>
             </div>
             <div class="illustration">
                 <svg viewBox="0 0 400 300">
-                    <circle cx="150" cy="150" r="80" fill="#4285F4" opacity="0.4" />
-                    <circle cx="250" cy="150" r="80" fill="#34A853" opacity="0.4" />
+                    <circle cx="150" cy="150" r="90" fill="#4285F4" opacity="0.3" />
+                    <circle cx="250" cy="150" r="90" fill="#34A853" opacity="0.3" />
+                    <text x="200" y="155" text-anchor="middle" font-weight="700" fill="#1e293b" font-size="22">共生</text>
                 </svg>
             </div>
         </div>
@@ -396,18 +471,19 @@
 </div>
 
 <div class="slide-container">
-    <h2 class="slide-title">結論二：邁向 AI 時代的永續轉折點</h2>
+    <h2 class="slide-title">結論二：我們留給子孫什麼樣的世界？</h2>
     <div class="content-area">
         <div class="two-column">
             <div class="illustration">
                 <svg viewBox="0 0 400 300">
-                    <path d="M50,250 Q200,240 350,50" fill="none" stroke="#4285F4" stroke-width="4" />
-                    <circle cx="350" cy="50" r="10" fill="#34A853" />
+                    <path d="M50,250 Q200,230 350,50" fill="none" stroke="#4285F4" stroke-width="5" />
+                    <circle cx="350" cy="50" r="12" fill="#34A853" />
                 </svg>
             </div>
             <div>
-                <h3>技術開發者之責任</h3>
-                <p>未來的企業經營領袖應看重如何以最少資源創造最大社會福祉，而不僅僅是財務利潤。</p>
+                <h3>AI 時代的卓越企業定義</h3>
+                <p>技術終將老去，但智慧會留下來。AI 不是要把人變成機器，而是讓人有更多時間去思考人性。</p>
+                <p>卓越的企業不只是看財務報表，而是看誰能用最少的資源創造最大的社會福祉。</p>
             </div>
         </div>
     </div>
@@ -415,8 +491,8 @@
 
 <div class="slide-container">
     <div class="content-area" style="text-align: center;">
-        <h2 style="font-size: 80px; color: #4285F4;">Q&A</h2>
-        <p style="font-size: 32px; margin-top: 20px;">感謝您的聆聽與指教</p>
+        <h2 style="font-size: 100px; color: #4285F4; margin-bottom: 20px;">Q&A</h2>
+        <p style="font-size: 40px; font-weight: 700; color: #1e293b;">感謝您的聆聽與指教</p>
     </div>
 </div>
 
