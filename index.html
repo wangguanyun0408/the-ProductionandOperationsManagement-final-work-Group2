@@ -12,7 +12,7 @@
         /* 1. 核心設計：1280x720 固定維度 */
         * { box-sizing: border-box; }
         body { background-color: #0f172a; margin: 0; padding: 50px 0; display: flex; flex-direction: column; align-items: center; gap: 60px; }
-        
+
         .slide-container {
             width: 1280px; height: 720px;
             background: white; border-radius: 15px; position: relative;
@@ -78,85 +78,47 @@
         .bar-bg { background: #e2e8f0; flex-grow: 1; height: 35px; border-radius: 5px; overflow: hidden; }
         .bar-fill { height: 100%; background: #4285F4; color: white; display: flex; align-items: center; justify-content: flex-end; padding-right: 15px; font-size: 16px; font-weight: 700; }
 
-        /* ====== 手機螢幕完美適配 (強制修正左偏與滾動版) ====== */
+        /* ====== 手機螢幕完美適配 (Mobile Responsive) ====== */
         @media (max-width: 768px) {
-            body { 
-                display: block; /* 關鍵：取消 flex 佈局，防止內容左偏切斷 */
-                padding: 15px 10px; 
-                background-color: #0f172a;
-                overflow-x: hidden; /* 防止橫向抖動 */
-            }
-            
+            body { padding: 20px 10px; gap: 30px; }
+
+            /* 強制取消固定 1280x720，讓手機可以上下滑動 */
             .slide-container {
-                width: 100% !important; /* 強制覆蓋原本的 1280px */
-                height: auto !important; /* 強制覆蓋原本的 720px */
-                min-height: auto;
-                padding: 30px 15px !important; /* 縮減邊距，給文字空間 */
-                margin-bottom: 20px;
-                border-radius: 8px;
-                overflow: visible; /* 允許內容撐開高度 */
-                flex-shrink: 1;
+                width: 100%; 
+                height: auto; 
+                min-height: 100vh;
+                padding: 40px 20px;
+                border-radius: 0;
             }
 
-            /* 文字縮放優化 */
-            h1 { font-size: 32px !important; line-height: 1.2 !important; }
-            .slide-title { font-size: 24px !important; margin-bottom: 15px !important; padding-left: 10px !important; }
-            h3 { font-size: 20px !important; margin-bottom: 10px !important; }
-            p, li, td { font-size: 16px !important; line-height: 1.5 !important; }
+            /* 標題縮小 */
+            h1 { font-size: 36px !important; }
+            .slide-title { font-size: 28px; margin-bottom: 20px; }
+            p, li, td { font-size: 16px; }
 
-            /* 左右欄位改為上下堆疊 */
-            .two-column { 
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 20px !important; 
-            }
-            
-            .illustration { 
-                width: 100% !important;
-                min-height: 150px !important; 
-                padding: 10px !important; 
-            }
-            .illustration svg { max-height: 180px !important; }
+            /* 左右二欄變上下單欄 */
+            .two-column { grid-template-columns: 1fr; gap: 30px; }
+            .illustration { min-height: 200px; padding: 15px; }
+            .illustration svg { max-height: 200px; }
 
-            /* 修正流程圖 (Step)：改為垂直緊湊排列 */
-            .process-flow { 
-                flex-direction: column !important; 
-                gap: 12px !important; 
-                margin-top: 10px !important; 
-            }
-            .process-flow::after { display: none !important; } /* 刪除橫線 */
-            .step { 
-                width: 100% !important; 
-                padding: 12px !important; 
-                text-align: left !important;
-            }
-            .step h4 { font-size: 18px !important; margin: 5px 0 !important; }
-            .step p { font-size: 14px !important; }
+            /* 流程圖變垂直 */
+            .process-flow { flex-direction: column; gap: 15px; margin-top: 20px; }
+            .process-flow::after { display: none; }
+            .step { width: 100%; }
 
-            /* 修正 SWOT 矩陣：改為垂直長條卡片 */
-            .swot-matrix { 
-                display: flex !important; 
-                flex-direction: column !important; 
-                gap: 10px !important; 
-                grid-template-columns: none !important;
+            /* SWOT 矩陣變垂直列表 */
+            .swot-matrix {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                display: flex;
+                flex-direction: column;
             }
-            .matrix-header { 
-                width: 100% !important; 
-                padding: 10px !important; 
-                height: auto !important;
-            }
-            .matrix-header.corner { display: none !important; }
-            .matrix-box { width: 100% !important; }
+            .matrix-header.corner { display: none; }
 
-            /* 圖表與表格適配 */
-            .bar-row { flex-direction: column !important; align-items: flex-start !important; gap: 5px !important; }
-            .bar-label { width: 100% !important; text-align: left !important; }
-            
-            /* 磁磚樣式適配 */
-            .tiled { flex-direction: column !important; }
-            .tile { width: 100% !important; margin-bottom: 10px !important; }
+            /* 圖表適配 */
+            .bar-row { flex-direction: column; align-items: flex-start; gap: 5px; }
+            .bar-label { width: 100%; text-align: left; }
         }
-        
     </style>
 </head>
 <body>
@@ -214,6 +176,7 @@
             <div>
                 <h3>水的生生不息，尋找最初的源頭</h3>
                 <p>對現代人而言，Google 就是數位世界的「水源」。</p>
+                <p>人類天生恐懼資訊斷絕。我們研究 Google，是因為它接管了人類最原始的生存本能：**尋找答案的好奇心**。當系統影響 30 億人時，其生產管理直接關乎數位文明的穩定性。</p>
                 <p>人類天生恐懼資訊斷絕，我們研究 Google，是因為它接管了人類最原始的生存本能：**尋找答案的好奇心**，當系統影響 30 億人時，其生產管理直接關乎數位文明的穩定性。</p>
             </div>
         </div>
@@ -226,6 +189,7 @@
         <div class="two-column">
             <div>
                 <h3>不燒掉森林的生存法則</h3>
+                <p>聰明的獵人不會為了抓一隻兔子而燒掉整座森林。AI 算力需要無窮能量，若為技術而毀掉棲息地，這叫自我毀滅。</p>
                 <p>聰明的獵人不會為了抓一隻兔子而燒掉整座森林，AI 算力需要無窮能量，若為技術而毀掉棲息地，這叫自我毀滅。</p>
                 <p>本研究想拆解 Google 如何透過生產管理 (POM) 創新，在開發「最強工具」的同時，不燒掉家園，成功將 ESG 轉化為效率優勢。</p>
             </div>
@@ -247,18 +211,18 @@
             <div class="illustration">
                 <svg viewBox="0 0 400 300">
                     <rect x="50" y="100" width="300" height="150" fill="#f8fafc" stroke="#1e293b" stroke-width="2" />
-                    
+
                     <path d="M50,100 L200,30 L350,100 Z" fill="#e2e8f0" stroke="#1e293b" stroke-width="2" />
-                    
+
                     <text x="200" y="85" text-anchor="middle" font-family="Poppins" font-weight="700" fill="#4285F4" font-size="18" letter-spacing="1px">GARAGE SPIRIT</text>
-                    
+
                     <rect x="100" y="200" width="120" height="10" fill="#cbd5e1" stroke="#1e293b" stroke-width="2" />
                     <rect x="110" y="210" width="8" height="40" fill="#cbd5e1" stroke="#1e293b" stroke-width="2" />
                     <rect x="202" y="210" width="8" height="40" fill="#cbd5e1" stroke="#1e293b" stroke-width="2" />
 
                     <rect x="130" y="150" width="60" height="45" rx="3" fill="#ffffff" stroke="#1e293b" stroke-width="2" />
                     <rect x="145" y="195" width="30" height="5" fill="#1e293b" />
-                    
+
                     <circle cx="280" cy="150" r="10" fill="#EA4335" />
                     <circle cx="260" cy="180" r="10" fill="#FBBC05" />
                     <circle cx="300" cy="180" r="10" fill="#34A853" />
@@ -267,6 +231,8 @@
             </div>
             <div>
                 <h3>Do the Right Thing</h3>
+                <p>車庫象徵最原始的創造力。偉大的文明都始於火堆旁的夢想。</p>
+                <p>從 "Don't be evil" 到 "Do the right thing"，這是一場「部落首領」如何保持初心的演進。握有資訊神火後，Google 選擇用它點亮文明，而非焚燒異己。</p>
                 <p>車庫象徵最原始的創造力，偉大的文明都始於火堆旁的夢想。</p>
                 <p>從 "Don't be evil" 到 "Do the right thing"，這是一場「部落首領」如何保持初心的演進，握有資訊神火後，Google 選擇用它點亮文明，而非焚燒異己。</p>
             </div>
@@ -279,6 +245,8 @@
         <div class="two-column">
             <div>
                 <h3>全天候無碳能源 (CFE)</h3>
+                <p>這是一場回歸原始能源觀的革命。Google 試圖重拾人類對太陽與季風的古老依賴。</p>
+                <p>Google 承諾 2030 年全面使用無碳電力。這不僅是電力工程，更是人類重新學習如何與自然律動同步的過程，展現了技術開發者對自然的敬畏。</p>
                 <p>這是一場回歸原始能源觀的革命，Google 試圖重拾人類對太陽與季風的古老依賴。</p>
                 <p>Google 承諾 2030 年全面使用無碳電力，這不僅是電力工程，更是人類重新學習如何與自然律動同步的過程，展現了技術開發者對自然的敬畏。</p>
             </div>
@@ -306,6 +274,8 @@
             </div>
             <div>
                 <h3>縮減數位落差</h3>
+                <p>部落的強大取決於最弱小的成員是否被照顧。Grow with Google 將技能傳遞給千萬人；AI 洪水預報系統保護了 4.6 億人。</p>
+                <p>在數位部落中，一個人的獲救，就是整個文明的進步。將「預知未來」的能力賦予每個人，這就是社會共榮。</p>
                 <p>部落的強大取決於最弱小的成員是否被照顧，Grow with Google 將技能傳遞給千萬人；AI 洪水預報系統保護了 4.6 億人。</p>
                 <p>在數位部落中，一個人的獲救，就是整個文明的進步，將「預知未來」的能力賦予每個人，這就是社會共榮。</p>
             </div>
@@ -319,11 +289,13 @@
         <div class="two-column">
             <div style="background-color: #f8fafc; padding: 35px; border-radius: 15px; border-top: 6px solid #4285F4; height: 100%;">
                 <h3>負責任的 AI</h3>
+                <p>設立道德委員會，就像部落建立「禁忌 (Taboo)」。我們不去觸碰會帶來偏見與歧視的禁區。</p>
                 <p>設立道德委員會，就像部落建立「禁忌 (Taboo)」，我們不去觸碰會帶來偏見與歧視的禁區。</p>
                 <p>負責任的治理，是我們對未知的恐懼所轉化成的智慧控制。</p>
             </div>
             <div style="background-color: #f8fafc; padding: 35px; border-radius: 15px; border-top: 6px solid #34A853; height: 100%;">
                 <h3>透明度治理</h3>
+                <p>每年發布透明度報告。在技術狂奔的年代，良好的治理就是為失控的巨獸繫上最堅固的安全繩。</p>
                 <p>每年發布透明度報告，在技術狂奔的年代，良好的治理就是為失控的巨獸繫上最堅固的安全繩。</p>
             </div>
         </div>
@@ -383,6 +355,8 @@
         <div class="two-column">
             <div>
                 <h3>硬體供應鏈垂直整合</h3>
+                <p>製作工具的人必須對材料負責。當我們拿起 Pixel 9，手感來自 100% 回收鋁。</p>
+                <p>我們不再揮霍大地，而是重複利用 880 萬件伺服器組件。這是一種對自然的敬畏，也是最高層級的成本控制管理。</p>
                 <p>製作工具的人必須對材料負責，當我們拿起 Pixel 9，手感來自 100% 回收鋁。</p>
                 <p>我們不再揮霍大地，而是重複利用 880 萬件伺服器組件，這是一種對自然的敬畏，也是最高層級的成本控制管理。</p>
             </div>
@@ -409,6 +383,8 @@
             </div>
             <div>
                 <h3>容錯的生存哲學</h3>
+                <p>SRE 工程師是守望者。他們不追求「絕對安穩」，因為他們知道崩潰隨時會來。</p>
+                <p>透過「錯誤預算 (Error Budget)」，他們學會在危險邊緣生存與試錯。這是一種將維運視為軟體工程的偉大生存哲學。</p>
                 <p>SRE 工程師是守望者，他們不追求「絕對安穩」，因為他們知道崩潰隨時會來。</p>
                 <p>透過「錯誤預算 (Error Budget)」，他們學會在危險邊緣生存與試錯，這是一種將維運視為軟體工程的偉大生存哲學。</p>
             </div>
@@ -446,6 +422,7 @@
                 <div class="bar-bg"><div class="bar-fill" style="width: 95%; background: #34A853;">3.0x 倍極致省電</div></div>
             </div>
         </div>
+        <p style="text-align: center;">TPU 是我們打造的最鋒利石斧。用智慧克服體力限制，展現人類優化邊際成本的極致本能。</p>
         <p style="text-align: center;">TPU 是我們打造的最鋒利石斧，用智慧克服體力限制，展現人類優化邊際成本的極致本能。</p>
     </div>
 </div>
@@ -456,6 +433,7 @@
         <div class="two-column">
             <div>
                 <h3>代碼學會了謙遜</h3>
+                <p>當演算法開始照顧空調，它就像森林中的植物學會共享陽光。DeepMind AI 即時控制資料中心，成功降低 40% 冷卻能耗。</p>
                 <p>當演算法開始照顧空調，它就像森林中的植物學會共享陽光，DeepMind AI 即時控制資料中心，成功降低 40% 冷卻能耗。</p>
                 <p>我們讓 AI 學會了節制，這完美詮釋了生產作業如何與自然環境和諧共生。</p>
             </div>
@@ -487,6 +465,7 @@
         <div class="two-column">
             <div>
                 <h3>不把糧食藏在同一個山洞</h3>
+                <p>聰明的部落懂得分散風險。重組為 Alphabet 是為了切割主營業務與未來投資。</p>
                 <p>聰明的部落懂得分散風險，重組為 Alphabet 是為了切割主營業務與未來投資。</p>
                 <p>實現資源精準配置，讓創新者有獨立實驗場，確保了主引擎的絕對穩定。</p>
             </div>
@@ -502,13 +481,14 @@
 </div>
 
 <div class="slide-container">
+    <h2 class="slide-title">經營總結：TOWS 策略交叉矩陣</h2>
     <h2 class="slide-title">經營總結：SWOT 策略交叉矩陣</h2>
     <div class="content-area">
         <div class="swot-matrix">
             <div class="matrix-header corner">內部因素 \ 外部因素</div>
             <div class="matrix-header" style="border-bottom: 4px solid #34A853;">機會 (Opportunities)</div>
             <div class="matrix-header" style="border-bottom: 4px solid #EA4335;">威脅 (Threats)</div>
-            
+
             <div class="matrix-header" style="border-right: 4px solid #4285F4;">優勢<br>(Strengths)</div>
             <div class="matrix-box">
                 <h4>SO 策略 (增長)</h4>
@@ -524,7 +504,7 @@
                     <li>發揮品牌信任感，降低隱私監管帶來的用戶流失。</li>
                 </ul>
             </div>
-            
+
             <div class="matrix-header" style="border-right: 4px solid #FBBC05;">劣勢<br>(Weaknesses)</div>
             <div class="matrix-box">
                 <h4>WO 策略 (轉型)</h4>
@@ -550,6 +530,7 @@
         <div class="two-column">
             <div>
                 <h3>ESG 與 POM 的深度共生</h3>
+                <p>互惠利他是部落生存的唯一法則。Google 的 ESG 並非慈善，而是最高級別的效率優化。</p>
                 <p>互惠利他是部落生存的唯一法則，Google 的 ESG 並非慈善，而是最高級別的效率優化。</p>
                 <p>Google 證明了「善良與道德」不僅是口號，更是一種具備極高生產力的商業模式。</p>
             </div>
@@ -576,6 +557,7 @@
             </div>
             <div>
                 <h3>AI 時代的卓越企業定義</h3>
+                <p>技術終將老去，但智慧會留下來。AI 不是要把人變成機器，而是讓人有更多時間去思考人性。</p>
                 <p>技術終將老去，但智慧會留下來，AI 不是要把人變成機器，而是讓人有更多時間去思考人性。</p>
                 <p>卓越的企業不只是看財務報表，而是看誰能用最少的資源創造最大的社會福祉。</p>
             </div>
