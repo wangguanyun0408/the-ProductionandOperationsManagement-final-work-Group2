@@ -79,46 +79,66 @@
         .bar-fill { height: 100%; background: #4285F4; color: white; display: flex; align-items: center; justify-content: flex-end; padding-right: 15px; font-size: 16px; font-weight: 700; }
 
         /* ====== 手機螢幕完美適配 (Mobile Responsive) ====== */
-        @media (max-width: 768px) {
-            body { padding: 20px 10px; gap: 30px; }
-            
-            /* 強制取消固定 1280x720，讓手機可以上下滑動 */
-            .slide-container {
-                width: 100%; 
-                height: auto; 
-                min-height: 100vh;
-                padding: 40px 20px;
-                border-radius: 0;
+        /* ====== 手機螢幕完美適配 (全面優化版) ====== */
+        @media (max-width: 768px) {
+            body { padding: 10px 5px; gap: 20px; }
+            
+            .slide-container {
+                width: 100%; 
+                height: auto; 
+                min-height: 100vh;
+                /* 關鍵：大幅縮減手機版邊距，給文字更多空間 */
+                padding: 30px 15px; 
+                border-radius: 0;
+                flex-shrink: unset;
+            }
+
+            /* 標題縮小以防佔位過多 */
+            h1 { font-size: 32px !important; }
+            .slide-title { font-size: 24px; margin-bottom: 15px; padding-left: 10px; }
+            h3 { font-size: 20px; }
+            p, li, td { font-size: 15px; line-height: 1.4; text-align: justify; }
+
+            /* 左右二欄改為上下單欄，且縮小插圖高度 */
+            .two-column { grid-template-columns: 1fr; gap: 20px; }
+            .illustration { min-height: 150px; padding: 10px; }
+            .illustration svg { max-height: 150px; }
+
+            /* 流程圖 (Step)：解決直列圖內文字換行過多的問題 */
+            .process-flow { flex-direction: column; gap: 10px; margin-top: 15px; }
+            .process-flow::after { display: none; }
+            .step { 
+                width: 100%; 
+                padding: 12px; 
+                display: flex; 
+                align-items: center; 
+                text-align: left; /* 改為靠左對齊，節省垂直空間 */
+                gap: 15px;
             }
+            .step i { margin-bottom: 0; font-size: 24px; flex-shrink: 0; }
+            .step h4 { margin: 0; font-size: 18px; flex-shrink: 0; width: 80px; }
+            .step p { margin: 0; font-size: 14px; }
 
-            /* 標題縮小 */
-            h1 { font-size: 36px !important; }
-            .slide-title { font-size: 28px; margin-bottom: 20px; }
-            p, li, td { font-size: 16px; }
-
-            /* 左右二欄變上下單欄 */
-            .two-column { grid-template-columns: 1fr; gap: 30px; }
-            .illustration { min-height: 200px; padding: 15px; }
-            .illustration svg { max-height: 200px; }
-
-            /* 流程圖變垂直 */
-            .process-flow { flex-direction: column; gap: 15px; margin-top: 20px; }
-            .process-flow::after { display: none; }
-            .step { width: 100%; }
-
-            /* SWOT 矩陣變垂直列表 */
-            .swot-matrix {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto;
-                display: flex;
-                flex-direction: column;
+            /* SWOT 矩陣：強制變為垂直條狀卡片 */
+            .swot-matrix { 
+                display: flex; 
+                flex-direction: column; 
+                gap: 10px; 
             }
-            .matrix-header.corner { display: none; }
+            .matrix-header { padding: 8px; font-size: 16px; }
+            .matrix-header.corner { display: none; }
+            .matrix-box { padding: 15px; }
 
-            /* 圖表適配 */
-            .bar-row { flex-direction: column; align-items: flex-start; gap: 5px; }
-            .bar-label { width: 100%; text-align: left; }
-        }
+            /* 表格適配：允許左右滑動，防止字體擠壓 */
+            .content-area { overflow-x: auto; display: block; }
+            table { min-width: 500px; }
+            th, td { padding: 10px 5px; font-size: 13px; }
+
+            /* 圖表進度條適配 */
+            .bar-row { flex-direction: column; align-items: flex-start; gap: 5px; }
+            .bar-label { width: 100%; text-align: left; font-size: 14px; }
+        }
+        
     </style>
 </head>
 <body>
