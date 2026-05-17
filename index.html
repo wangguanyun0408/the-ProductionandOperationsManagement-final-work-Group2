@@ -78,7 +78,7 @@
         .bar-bg { background: #e2e8f0; flex-grow: 1; height: 35px; border-radius: 5px; overflow: hidden; }
         .bar-fill { height: 100%; background: #4285F4; color: white; display: flex; align-items: center; justify-content: flex-end; padding-right: 15px; font-size: 16px; font-weight: 700; }
 
-        /* ====== 以下是你剛剛加進去的手機螢幕適配代碼 ====== */
+        /* ====== 手機螢幕完美適配 (Mobile Responsive) ====== */
         @media (max-width: 768px) {
             body { padding: 20px 10px; gap: 30px; }
             
@@ -91,29 +91,34 @@
                 border-radius: 0;
             }
 
-            /* 文字大小智慧縮放 */
+            /* 標題縮小 */
             h1 { font-size: 36px !important; }
             .slide-title { font-size: 28px; margin-bottom: 20px; }
             p, li, td { font-size: 16px; }
 
-            /* 佈局重整：左右變上下 */
+            /* 左右二欄變上下單欄 */
             .two-column { grid-template-columns: 1fr; gap: 30px; }
             .illustration { min-height: 200px; padding: 15px; }
             .illustration svg { max-height: 200px; }
 
-            /* 流程圖與矩陣垂直化 */
+            /* 流程圖變垂直 */
             .process-flow { flex-direction: column; gap: 15px; margin-top: 20px; }
             .process-flow::after { display: none; }
             .step { width: 100%; }
-            .swot-matrix { display: flex; flex-direction: column; gap: 10px; }
+
+            /* SWOT 矩陣變垂直列表 */
+            .swot-matrix {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                display: flex;
+                flex-direction: column;
+            }
             .matrix-header.corner { display: none; }
 
             /* 圖表適配 */
             .bar-row { flex-direction: column; align-items: flex-start; gap: 5px; }
             .bar-label { width: 100%; text-align: left; }
         }
-        /* ====== 以上是加進去的內容 ====== */
-        
     </style>
 </head>
 <body>
@@ -204,7 +209,22 @@
             <div class="illustration">
                 <svg viewBox="0 0 400 300">
                     <rect x="50" y="100" width="300" height="150" fill="#f8fafc" stroke="#1e293b" stroke-width="2" />
-                    <path d="M50,100 L200,30 L350,100" fill="none" stroke="#EA4335" stroke-width="4" />
+                    
+                    <path d="M50,100 L200,30 L350,100 Z" fill="#e2e8f0" stroke="#1e293b" stroke-width="2" />
+                    
+                    <text x="200" y="85" text-anchor="middle" font-family="Poppins" font-weight="700" fill="#4285F4" font-size="18" letter-spacing="1px">GARAGE SPIRIT</text>
+                    
+                    <rect x="100" y="200" width="120" height="10" fill="#cbd5e1" stroke="#1e293b" stroke-width="2" />
+                    <rect x="110" y="210" width="8" height="40" fill="#cbd5e1" stroke="#1e293b" stroke-width="2" />
+                    <rect x="202" y="210" width="8" height="40" fill="#cbd5e1" stroke="#1e293b" stroke-width="2" />
+
+                    <rect x="130" y="150" width="60" height="45" rx="3" fill="#ffffff" stroke="#1e293b" stroke-width="2" />
+                    <rect x="145" y="195" width="30" height="5" fill="#1e293b" />
+                    
+                    <circle cx="280" cy="150" r="10" fill="#EA4335" />
+                    <circle cx="260" cy="180" r="10" fill="#FBBC05" />
+                    <circle cx="300" cy="180" r="10" fill="#34A853" />
+                    <path d="M280,150 L260,180 M280,150 L300,180 M260,180 L300,180" stroke="#1e293b" stroke-width="2" fill="none" />
                 </svg>
             </div>
             <div>
@@ -215,7 +235,6 @@
         </div>
     </div>
 </div>
-
 <div class="slide-container">
     <h2 class="slide-title">環境 (E)：對太陽與季風的古老崇拜</h2>
     <div class="content-area">
